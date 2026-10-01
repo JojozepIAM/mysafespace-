@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Safe Space</title>
+  <meta name="description" content="Supportive, compassionate guidance for healing, mentoring, and abuse recovery." />
+  <style>
+    :root {
+      --bg: #f7f1ec;
+      --panel: #ffffff;
+      --panel-soft: #f1e7df;
+      --main: #7a4b3a;
+      --main-dark: #4d2d23;
+      --text: #2c211d;
+      --muted: #685b56;
+      --line: #e5d7ce;
+      --accent: #c68b75;
+      --shadow: 0 12px 30px rgba(61, 39, 30, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: rgba(255, 255, 255, 0.9);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(8px);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 72px;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--main-dark);
+      letter-spacing: 0.03em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 999px;
+      background: var(--main);
+      color: #fff;
+      font-weight: 700;
+      transition: 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: var(--main-dark);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--main);
+      border: 2px solid var(--main);
+    }
+
+    .btn-secondary:hover {
+      background: var(--panel-soft);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #f7f1ec 0%, #efe3d9 100%);
+      padding: 80px 0 70px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--main);
+      background: #f2e4dc;
+      border: 1px solid #e8d7ce;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4.2rem);
+      line-height: 1.08;
+      margin: 18px 0 18px;
+      color: var(--main-dark);
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin-bottom: 28px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .hero-card {
+      background: var(--panel);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+      border: 1px solid var(--line);
+    }
+
+    .hero-card h3 {
+      margin-top: 0;
+      color: var(--main-dark);
+    }
+
+    .stat-list {
+      list-style: none;
+      margin: 18px 0 0;
+      padding: 0;
+      display: grid;
+      gap: 16px;
+    }
+
+    .stat-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      color: var(--text);
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+    }
+
+    .section {
+      padding: 76px 0;
+    }
+
+    .section-header {
+      max-width: 700px;
+      margin-bottom: 30px;
+    }
+
+    .section-header h2 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--main-dark);
+    }
+
+    .section-header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .about-box {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .about-box p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .info-card {
+      background: var(--panel-soft);
+      border-radius: 24px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      min-height: 100%;
+    }
+
+    .info-card h3 {
+      margin-top: 0;
+      color: var(--main-dark);
+    }
+
+    .info-card ul {
+      margin: 18px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card .icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      background: var(--panel-soft);
+      border-radius: 14px;
+      margin-bottom: 18px;
+      font-size: 1.5rem;
+    }
+
+    .card h3 {
+      margin: 0 0 12px;
+      color: var(--main-dark);
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 30px;
+    }
+
+    .resource-item {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .resource-body {
+      padding: 24px;
+    }
+
+    .resource-body h3 {
+      color: var(--main-dark);
+      margin: 0 0 12px;
+    }
+
+    .resource-body p {
+      color: var(--muted);
+      margin: 0 0 18px;
+    }
+
+    .resource-link {
+      font-weight: 700;
+      color: var(--main);
+    }
+
+    .newsletter-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 30px;
+    }
+
+    .news-item {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .tag {
+      display: inline-block;
+      color: var(--main);
+      background: #f2e4dc;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 7px 10px;
+      margin-bottom: 14px;
+    }
+
+    .news-item h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: var(--main-dark);
+    }
+
+    .news-item p {
+      margin: 0 0 18px;
+      color: var(--muted);
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, #fff 0%, #f5eae1 100%);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 34px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-box h3 {
+      margin: 0 0 8px;
+      color: var(--main-dark);
+      font-size: clamp(1.6rem, 3vw, 2.3rem);
+    }
+
+    .contact-box p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    footer {
+      background: #2d221f;
+      color: #f4ece8;
+      padding: 28px 0;
+      margin-top: 20px;
+    }
+
+    .footer-wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-wrap p {
+      margin: 0;
+      opacity: 0.85;
+    }
+
+    @media (max-width: 860px) {
+      .hero-grid,
+      .about-grid,
+      .cards,
+      .resource-grid,
+      .newsletter-list {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        flex-direction: column;
+        justify-content: center;
+        padding: 16px 0;
+      }
+
+      .nav-links {
+        justify-content: center;
+        padding-top: 8px;
+      }
+
+      .contact-box {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">My Safe Space</div>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#resources">Resources</a>
+        <a href="#newsletter">Newsletter</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Compassionate support</span>
+          <h1>Safe, supportive guidance for healing and growth.</h1>
+          <p class="lead">
+            My Safe Space offers compassionate, trauma-aware support through psychology-informed guidance,
+            peer mentoring, and practical recovery resources.
+          </p>
+
+          <div class="cta-row">
+            <a href="#resources" class="btn">Explore resources</a>
+            <a href="#contact" class="btn btn-secondary">Get in touch</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <h3>What you can access</h3>
+          <ul class="stat-list">
+            <li><span>Abuse recovery guidance</span><strong>✓</strong></li>
+            <li><span>Peer mentoring support</span><strong>✓</strong></li>
+            <li><span>Wellbeing resources</span><strong>✓</strong></li>
+            <li><span>Digital guides & newsletter</span><strong>✓</strong></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <h2>About My Safe Space</h2>
+          <p>
+            A supportive, compassionate space rooted in lived experience, dignity, and gentle guidance.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-box">
+            <p>
+              My Safe Space is a supportive environment for those navigating difficult life experiences,
+              emotional recovery, and the process of rebuilding trust, confidence, and stability.
+              The focus is on compassionate connection, practical support, and safe encouragement.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Who this is for</h3>
+            <ul>
+              <li>People healing from abuse or trauma</li>
+              <li>Anyone seeking emotional support and grounding</li>
+              <li>People exploring mentoring, guidance, and recovery pathways</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <h2>Support and services</h2>
+          <p>Practical, compassionate pathways to healing and resilience.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="icon">💛</div>
+            <h3>Abuse recovery</h3>
+            <p>Gentle support, reflective guidance, and tools to help rebuild safety and confidence.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🫶</div>
+            <h3>Peer mentoring</h3>
+            <p>Encouraging, non-judgmental guidance for people seeking support on their healing journey.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">📘</div>
+            <h3>Digital guides</h3>
+            <p>Downloadable resources that explore trauma-informed practices, reflection, and recovery.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="resources">
+      <div class="container">
+        <div class="section-header">
+          <h2>Digital guides and downloads</h2>
+          <p>Download practical tools and resources designed for support and reflection.</p>
+        </div>
+
+        <div class="resource-grid">
+          <article class="resource-item">
+            <div class="resource-body">
+              <h3>Abuse Recovery Guide</h3>
+              <p>A supportive guide for understanding recovery, grounding techniques, and next steps.</p>
+              <a class="resource-link" href="assets/pdfs/abuse-recovery-guide.pdf" target="_blank" download>Download PDF</a>
+            </div>
+          </article>
+
+          <article class="resource-item">
+            <div class="resource-body">
+              <h3>Mentoring Resource Pack</h3>
+              <p>Helpful prompts and simple tools to support healthy conversations and reflection.</p>
+              <a class="resource-link" href="assets/pdfs/mentoring-resource-pack.pdf" target="_blank" download>Download PDF</a>
+            </div>
+          </article>
+
+          <article class="resource-item">
+            <div class="resource-body">
+              <h3>Newsletter Archive</h3>
+              <p>Past writing, updates, and wellbeing reflections shared through the My Safe Space newsletter.</p>
+              <a class="resource-link" href="assets/pdfs/newsletter-archive.pdf" target="_blank" download>Download PDF</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="newsletter">
+      <div class="container">
+        <div class="section-header">
+          <h2>Newsletter and updates</h2>
+          <p>Monthly reflections, resources, and practical support for emotional wellbeing.</p>
+        </div>
+
+        <div class="newsletter-list">
+          <article class="news-item">
+            <span class="tag">Wellbeing</span>
+            <h3>Finding steadiness after overwhelm</h3>
+            <p>Simple grounding tools and gentle steps toward emotional calm.</p>
+            <a href="assets/pdfs/newsletter-archive.pdf" class="resource-link" target="_blank" download>Read PDF</a>
+          </article>
+
+          <article class="news-item">
+            <span class="tag">Recovery</span>
+            <h3>Understanding boundaries with compassion</h3>
+            <p>How boundaries can protect wellbeing without shame or guilt.</p>
+            <a href="assets/pdfs/newsletter-archive.pdf" class="resource-link" target="_blank" download>Read PDF</a>
+          </article>
+
+          <article class="news-item">
+            <span class="tag">Mentoring</span>
+            <h3>Reflection prompts for healing</h3>
+            <p>Thoughtful questions to support insight, awareness, and self-kindness.</p>
+            <a href="assets/pdfs/newsletter-archive.pdf" class="resource-link" target="_blank" download>Read PDF</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <div>
+            <h3>Need support or guidance?</h3>
+            <p>Reach out to begin a safe, compassionate conversation.</p>
+          </div>
+
+          <div>
+            <a class="btn" href="mailto:hello@mysafespace.com">Contact by email</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-wrap">
+      <p>© 2026 My Safe Space</p>
+      <p>Compassionate support for healing and growth.</p>
+    </div>
+  </footer>
+</body>
+</html>
