@@ -22,7 +22,7 @@
     * { box-sizing: border-box; }
 
     html {
-      scroll-behavior: smooth;
+      scroll-behavior: auto;
     }
 
     body {
@@ -49,12 +49,12 @@
     }
 
     .topbar {
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.96);
       border-bottom: 1px solid var(--line);
       position: sticky;
       top: 0;
       z-index: 10;
-      backdrop-filter: blur(8px);
+      contain: layout paint;
     }
 
     .nav {
@@ -90,7 +90,7 @@
       background: var(--main);
       color: #fff;
       font-weight: 700;
-      transition: 0.2s ease;
+      transition: background-color 0.2s ease, color 0.2s ease;
       border: none;
       cursor: pointer;
     }
@@ -112,6 +112,8 @@
     .hero {
       background: linear-gradient(135deg, #f7f1ec 0%, #efe3d9 100%);
       padding: 80px 0 70px;
+      content-visibility: auto;
+      contain-intrinsic-size: 900px 620px;
     }
 
     .hero-grid {
@@ -188,6 +190,8 @@
 
     .section {
       padding: 76px 0;
+      content-visibility: auto;
+      contain-intrinsic-size: 1100px 520px;
     }
 
     .section-header {
@@ -421,6 +425,19 @@
       .contact-box {
         align-items: flex-start;
         flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
       }
     }
   </style>
