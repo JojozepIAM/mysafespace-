@@ -224,7 +224,8 @@
     .resource-item,
     .news-item,
     .community-panel,
-    .transparency-panel {
+    .transparency-panel,
+    .submission-box {
       background: var(--panel);
       border: 1px solid var(--line);
       border-radius: 20px;
@@ -293,7 +294,8 @@
     .resource-grid,
     .newsletter-list,
     .community-grid,
-    .transparency-grid {
+    .transparency-grid,
+    .submission-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 22px;
@@ -303,7 +305,8 @@
     .resource-item,
     .news-item,
     .community-panel,
-    .transparency-panel {
+    .transparency-panel,
+    .submission-box {
       overflow: hidden;
       padding: 24px;
     }
@@ -312,7 +315,8 @@
     .news-item h3,
     .community-panel h3,
     .community-panel h4,
-    .transparency-panel h3 {
+    .transparency-panel h3,
+    .submission-box h3 {
       color: var(--main-dark);
       margin: 0 0 12px;
     }
@@ -322,7 +326,9 @@
     .community-panel p,
     .community-panel li,
     .transparency-panel p,
-    .transparency-panel li {
+    .transparency-panel li,
+    .submission-box p,
+    .submission-box label {
       color: var(--muted);
       margin: 0;
     }
@@ -349,7 +355,8 @@
     .resource-list,
     .comment-list,
     .recommendation-list,
-    .transparency-list {
+    .transparency-list,
+    .submission-list {
       list-style: none;
       padding: 0;
       margin: 0;
@@ -360,7 +367,8 @@
     .resource-list li,
     .comment-list li,
     .recommendation-list li,
-    .transparency-list li {
+    .transparency-list li,
+    .submission-list li {
       border: 1px solid var(--line);
       border-radius: 12px;
       background: var(--panel-soft);
@@ -390,6 +398,49 @@
       margin-top: 18px;
       color: var(--main-dark);
       font-weight: 700;
+    }
+
+    .form-wrap {
+      display: grid;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .form-field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .form-field input,
+    .form-field textarea,
+    .form-field select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      padding: 12px 14px;
+      font: inherit;
+      color: var(--text);
+    }
+
+    .form-field textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-success {
+      display: none;
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: #edf7ee;
+      border: 1px solid #d3e9d8;
+      color: var(--main-dark);
+      font-weight: 700;
+    }
+
+    .form-success.visible {
+      display: block;
     }
 
     .contact-box {
@@ -442,7 +493,8 @@
       .resource-grid,
       .newsletter-list,
       .community-grid,
-      .transparency-grid {
+      .transparency-grid,
+      .submission-grid {
         grid-template-columns: 1fr;
       }
 
@@ -630,7 +682,7 @@
         <div class="community-grid">
           <article class="community-panel">
             <h3>Support links</h3>
-            <ul class="resource-list">
+            <ul class="resource-list" id="supportLinksList">
               <li><a href="https://www.lifeline.org.au" target="_blank" rel="noopener">Lifeline Australia</a></li>
               <li><a href="https://www.beyondblue.org.au" target="_blank" rel="noopener">Beyond Blue</a></li>
               <li><a href="https://www.1800respect.org.au" target="_blank" rel="noopener">1800RESPECT</a></li>
@@ -640,7 +692,7 @@
 
           <article class="community-panel">
             <h3>Recommendations</h3>
-            <ul class="recommendation-list">
+            <ul class="recommendation-list" id="recommendationList">
               <li>
                 <span class="tag">Approved</span>
                 <h4>Gentle grounding practices</h4>
@@ -656,7 +708,7 @@
 
           <article class="community-panel">
             <h3>Comments</h3>
-            <ul class="comment-list">
+            <ul class="comment-list" id="commentList">
               <li>
                 <strong>Anonymous peer</strong>
                 <p>“This space feels calm and safe. Thank you for creating it.”</p>
@@ -666,6 +718,84 @@
                 <p>“I appreciate the gentle, non-judgemental approach to healing.”</p>
               </li>
             </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="submissions">
+      <div class="container">
+        <div class="section-header">
+          <h2>Submit for review</h2>
+          <p>Share a resource, recommendation, or comment and it will be reviewed by the admin team before publication.</p>
+        </div>
+
+        <div class="submission-grid">
+          <article class="submission-box">
+            <h3>Suggest a support link</h3>
+            <form id="supportForm" class="form-wrap">
+              <div class="form-field">
+                <label for="supportTitle">Link title</label>
+                <input id="supportTitle" name="supportTitle" type="text" placeholder="e.g. The Brave Program" required />
+              </div>
+              <div class="form-field">
+                <label for="supportUrl">Website URL</label>
+                <input id="supportUrl" name="supportUrl" type="url" placeholder="https://example.com" required />
+              </div>
+              <div class="form-field">
+                <label for="supportCategory">Category</label>
+                <select id="supportCategory" name="supportCategory">
+                  <option value="Wellbeing">Wellbeing</option>
+                  <option value="Trauma">Trauma</option>
+                  <option value="Anxiety">Anxiety</option>
+                  <option value="Depression">Depression</option>
+                  <option value="Recovery">Recovery</option>
+                </select>
+              </div>
+              <button type="submit" class="btn">Submit link</button>
+              <div class="form-success" id="supportSuccess">Thank you. Your support link has been submitted and is awaiting admin review.</div>
+            </form>
+          </article>
+
+          <article class="submission-box">
+            <h3>Share a recommendation</h3>
+            <form id="recommendationForm" class="form-wrap">
+              <div class="form-field">
+                <label for="recommendationTitle">Title</label>
+                <input id="recommendationTitle" name="recommendationTitle" type="text" placeholder="e.g. Gentle tools for calming anxiety" required />
+              </div>
+              <div class="form-field">
+                <label for="recommendationText">Recommendation</label>
+                <textarea id="recommendationText" name="recommendationText" placeholder="Tell us what you would recommend and why." required></textarea>
+              </div>
+              <div class="form-field">
+                <label for="recommendationCategory">Category</label>
+                <select id="recommendationCategory" name="recommendationCategory">
+                  <option value="Wellbeing">Wellbeing</option>
+                  <option value="Self-awareness">Self-awareness</option>
+                  <option value="Recovery">Recovery</option>
+                  <option value="Support">Support</option>
+                </select>
+              </div>
+              <button type="submit" class="btn">Submit recommendation</button>
+              <div class="form-success" id="recommendationSuccess">Thank you. Your recommendation has been submitted and will be reviewed before publication.</div>
+            </form>
+          </article>
+
+          <article class="submission-box">
+            <h3>Leave a comment</h3>
+            <form id="commentForm" class="form-wrap">
+              <div class="form-field">
+                <label for="commentName">Name</label>
+                <input id="commentName" name="commentName" type="text" placeholder="Your name or anonymous" required />
+              </div>
+              <div class="form-field">
+                <label for="commentText">Comment</label>
+                <textarea id="commentText" name="commentText" placeholder="Write a kind, supportive comment." required></textarea>
+              </div>
+              <button type="submit" class="btn">Submit comment</button>
+              <div class="form-success" id="commentSuccess">Thank you. Your comment has been submitted and is awaiting admin review.</div>
+            </form>
           </article>
         </div>
       </div>
@@ -763,5 +893,149 @@
       <p>Compassionate support for healing and growth.</p>
     </div>
   </footer>
+
+  <script>
+    const storageKeys = {
+      support: 'mysafespace_support_links',
+      recommendations: 'mysafespace_recommendations',
+      comments: 'mysafespace_comments'
+    };
+
+    function getStoredItems(key) {
+      try {
+        const raw = localStorage.getItem(key);
+        return raw ? JSON.parse(raw) : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function saveItems(key, items) {
+      try {
+        localStorage.setItem(key, JSON.stringify(items));
+      } catch (error) {
+        console.warn('Storage is unavailable:', error);
+      }
+    }
+
+    function renderSupportLinks() {
+      const list = document.getElementById('supportLinksList');
+      const stored = getStoredItems(storageKeys.support);
+      if (!list) return;
+
+      stored.forEach((item) => {
+        const li = document.createElement('li');
+        const tag = document.createElement('span');
+        tag.className = 'tag';
+        tag.textContent = 'Pending review';
+        const heading = document.createElement('h4');
+        heading.textContent = item.title;
+        const link = document.createElement('a');
+        link.href = item.url;
+        link.target = '_blank';
+        link.rel = 'noopener';
+        link.textContent = item.url;
+        const meta = document.createElement('p');
+        meta.textContent = item.category;
+        li.appendChild(tag);
+        li.appendChild(heading);
+        li.appendChild(link);
+        li.appendChild(meta);
+        list.appendChild(li);
+      });
+    }
+
+    function renderRecommendations() {
+      const list = document.getElementById('recommendationList');
+      const stored = getStoredItems(storageKeys.recommendations);
+      if (!list) return;
+
+      stored.forEach((item) => {
+        const li = document.createElement('li');
+        const tag = document.createElement('span');
+        tag.className = 'tag';
+        tag.textContent = 'Pending review';
+        const heading = document.createElement('h4');
+        heading.textContent = item.title;
+        const text = document.createElement('p');
+        text.textContent = item.text;
+        li.appendChild(tag);
+        li.appendChild(heading);
+        li.appendChild(text);
+        list.appendChild(li);
+      });
+    }
+
+    function renderComments() {
+      const list = document.getElementById('commentList');
+      const stored = getStoredItems(storageKeys.comments);
+      if (!list) return;
+
+      stored.forEach((item) => {
+        const li = document.createElement('li');
+        const name = document.createElement('strong');
+        name.textContent = item.name;
+        const text = document.createElement('p');
+        text.textContent = '“' + item.text + '”';
+        li.appendChild(name);
+        li.appendChild(text);
+        list.appendChild(li);
+      });
+    }
+
+    const supportForm = document.getElementById('supportForm');
+    if (supportForm) {
+      supportForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const title = document.getElementById('supportTitle').value.trim();
+        const url = document.getElementById('supportUrl').value.trim();
+        const category = document.getElementById('supportCategory').value;
+
+        const items = getStoredItems(storageKeys.support);
+        items.push({ title, url, category });
+        saveItems(storageKeys.support, items);
+
+        document.getElementById('supportSuccess').classList.add('visible');
+        supportForm.reset();
+      });
+    }
+
+    const recommendationForm = document.getElementById('recommendationForm');
+    if (recommendationForm) {
+      recommendationForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const title = document.getElementById('recommendationTitle').value.trim();
+        const text = document.getElementById('recommendationText').value.trim();
+        const category = document.getElementById('recommendationCategory').value;
+
+        const items = getStoredItems(storageKeys.recommendations);
+        items.push({ title, text, category });
+        saveItems(storageKeys.recommendations, items);
+
+        document.getElementById('recommendationSuccess').classList.add('visible');
+        recommendationForm.reset();
+      });
+    }
+
+    const commentForm = document.getElementById('commentForm');
+    if (commentForm) {
+      commentForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const name = document.getElementById('commentName').value.trim();
+        const text = document.getElementById('commentText').value.trim();
+
+        const items = getStoredItems(storageKeys.comments);
+        items.push({ name, text });
+        saveItems(storageKeys.comments, items);
+
+        document.getElementById('commentSuccess').classList.add('visible');
+        commentForm.reset();
+      });
+    }
+
+    renderSupportLinks();
+    renderRecommendations();
+    renderComments();
+  </script>
 </body>
 </html>
