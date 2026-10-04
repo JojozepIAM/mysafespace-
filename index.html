@@ -223,7 +223,8 @@
     .card,
     .resource-item,
     .news-item,
-    .community-panel {
+    .community-panel,
+    .transparency-panel {
       background: var(--panel);
       border: 1px solid var(--line);
       border-radius: 20px;
@@ -291,7 +292,8 @@
 
     .resource-grid,
     .newsletter-list,
-    .community-grid {
+    .community-grid,
+    .transparency-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 22px;
@@ -300,7 +302,8 @@
 
     .resource-item,
     .news-item,
-    .community-panel {
+    .community-panel,
+    .transparency-panel {
       overflow: hidden;
       padding: 24px;
     }
@@ -308,7 +311,8 @@
     .resource-body h3,
     .news-item h3,
     .community-panel h3,
-    .community-panel h4 {
+    .community-panel h4,
+    .transparency-panel h3 {
       color: var(--main-dark);
       margin: 0 0 12px;
     }
@@ -316,7 +320,9 @@
     .resource-body p,
     .news-item p,
     .community-panel p,
-    .community-panel li {
+    .community-panel li,
+    .transparency-panel p,
+    .transparency-panel li {
       color: var(--muted);
       margin: 0;
     }
@@ -342,7 +348,8 @@
 
     .resource-list,
     .comment-list,
-    .recommendation-list {
+    .recommendation-list,
+    .transparency-list {
       list-style: none;
       padding: 0;
       margin: 0;
@@ -352,7 +359,8 @@
 
     .resource-list li,
     .comment-list li,
-    .recommendation-list li {
+    .recommendation-list li,
+    .transparency-list li {
       border: 1px solid var(--line);
       border-radius: 12px;
       background: var(--panel-soft);
@@ -433,7 +441,8 @@
       .cards,
       .resource-grid,
       .newsletter-list,
-      .community-grid {
+      .community-grid,
+      .transparency-grid {
         grid-template-columns: 1fr;
       }
 
@@ -477,6 +486,7 @@
         <a href="#services">Services</a>
         <a href="#resources">Resources</a>
         <a href="#community">Community</a>
+        <a href="#transparency">Transparency</a>
         <a href="#newsletter">Newsletter</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -655,6 +665,44 @@
                 <strong>Community member</strong>
                 <p>“I appreciate the gentle, non-judgemental approach to healing.”</p>
               </li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="transparency">
+      <div class="container">
+        <div class="section-header">
+          <h2>Transparency notice</h2>
+          <p>We want to be clear about how this space works, what is reviewed, and how we support wellbeing.</p>
+        </div>
+
+        <div class="transparency-grid">
+          <article class="transparency-panel">
+            <h3>What this space is</h3>
+            <ul class="transparency-list">
+              <li>My Safe Space is a peer-led wellbeing and recovery support space.</li>
+              <li>It is not a replacement for urgent medical or emergency support.</li>
+              <li>All community submissions are reviewed by admins before publication.</li>
+            </ul>
+          </article>
+
+          <article class="transparency-panel">
+            <h3>How we moderate</h3>
+            <ul class="transparency-list">
+              <li>We review support links, recommendations, and comments before they are shown publicly.</li>
+              <li>We remove content that is unsafe, misleading, manipulative, or harmful.</li>
+              <li>We aim to protect dignity, safety, and respectful communication.</li>
+            </ul>
+          </article>
+
+          <article class="transparency-panel">
+            <h3>Important note</h3>
+            <ul class="transparency-list">
+              <li>We share information for support and awareness, not as clinical advice.</li>
+              <li>Community content may vary and should be considered alongside professional guidance where needed.</li>
+              <li>We always encourage people to seek immediate help in a crisis.</li>
             </ul>
           </article>
         </div>
